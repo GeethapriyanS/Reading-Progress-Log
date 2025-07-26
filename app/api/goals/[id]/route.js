@@ -1,6 +1,5 @@
-// app/api/goals/[id]/route.js
-import dbConnect from '../../../../../lib/dbConnect';
-import Goal from '../../../../../lib/models/Goal';
+import dbConnect from '../../../../lib/dbConnect';
+import Goal from '../../../../lib/models/Goal';
 import { NextResponse } from 'next/server';
 
 export async function PUT(req, { params }) {
