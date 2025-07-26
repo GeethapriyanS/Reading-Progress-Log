@@ -1,0 +1,212 @@
+/* app/book/[id]/style.module.css */
+.bookDetailsContainer {
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  margin-bottom: 40px;
+}
+
+.bookDetailsContainer h1 {
+  font-size: 2.5em;
+  color: #2c3e50;
+  margin-bottom: 5px;
+}
+
+.author {
+  font-size: 1.2em;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.genre, .pages, .status {
+  font-size: 1em;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.sectionTitle {
+  font-size: 1.8em;
+  color: #34495e;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.progressText {
+  text-align: right;
+  font-size: 0.9em;
+  color: #777;
+  margin-top: 10px;
+}
+
+.actionButtons {
+  margin-top: 25px;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.updateProgressButton, .markCompletedButton {
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  border: none;
+  font-size: 1em;
+}
+
+.updateProgressButton {
+  background-color: #007bff;
+  color: white;
+}
+
+.updateProgressButton:hover {
+  background-color: #0056b3;
+}
+
+.markCompletedButton {
+  background-color: #28a745;
+  color: white;
+}
+
+.markCompletedButton:hover {
+  background-color: #218838;
+}
+
+.description {
+  line-height: 1.6;
+  color: #444;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.tag {
+  background-color: #e0e0e0;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 0.85em;
+  color: #555;
+}
+
+.noteForm, .quoteForm, .reviewForm {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.05);
+}
+
+.noteForm textarea, .quoteForm textarea, .reviewForm textarea {
+  width: calc(100% - 20px);
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.noteForm button, .quoteForm button, .reviewForm button {
+  padding: 10px 15px;
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.noteForm button:hover, .quoteForm button:hover, .reviewForm button:hover {
+  background-color: #5a6268;
+}
+
+.quoteForm input[type="number"] {
+  width: auto;
+  margin-right: 10px;
+}
+
+.notesList, .quotesList, .historyList {
+  list-style: none;
+  padding: 0;
+}
+
+.noteItem, .quoteItem {
+  background-color: #f0f0f0;
+  padding: 15px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  border-left: 5px solid #007bff;
+}
+
+.noteItem p, .quoteItem p {
+  margin-top: 0;
+  margin-bottom: 5px;
+  font-style: italic;
+}
+
+.noteTimestamp, .quoteDetails {
+  font-size: 0.8em;
+  color: #888;
+  display: block;
+  text-align: right;
+}
+
+.quoteItem {
+  border-left-color: #28a745; /* Different color for quotes */
+}
+
+.historyList li {
+  background-color: #f0f0f0;
+  padding: 10px 15px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  border-left: 3px solid #6c757d;
+}
+
+.ratingSection {
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.ratingSection label {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.star {
+  font-size: 1.8em;
+  color: #ccc;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.star:hover {
+  color: #ffcc00;
+}
+
+.filledStar {
+  color: #ffcc00;
+}
+
+.deleteButton {
+  background-color: #dc3545;
+  margin-top: 30px;
+  padding: 10px 20px;
+  font-size: 1.1em;
+  display: block;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.deleteButton:hover {
+  background-color: #c82333;
+}
