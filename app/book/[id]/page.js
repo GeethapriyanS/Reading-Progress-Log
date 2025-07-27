@@ -1,10 +1,9 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import ProgressBar from '../../components/ProgressBar';
-import styles from './style.module.css';
 
 export default function BookDetailsPage() {
   const { id } = useParams();
@@ -18,13 +17,7 @@ export default function BookDetailsPage() {
   const [reviewContent, setReviewContent] = useState('');
   const [rating, setRating] = useState(0);
 
-  useEffect(() => {
-    if (id) {
-      fetchBookDetails();
-    }
-  }, [id]);
-
-  const fetchBookDetails = async () => {
+  const fetchBookDetails = useCallback(async () => {
     setLoading(true);
     setError('');
     try {
@@ -43,8 +36,15 @@ export default function BookDetailsPage() {
     } finally {
       setLoading(false);
     }
-  };
-const handleMarkAsCompleted = async () => {
+  }, [id]); 
+
+  useEffect(() => {
+    if (id) {
+      fetchBookDetails();
+    }
+  }, [id, fetchBookDetails]); 
+
+  const handleMarkAsCompleted = async () => {
     if (!book) return;
     try {
       const res = await fetch(`/api/books/${id}/progress`, {
@@ -53,8 +53,6 @@ const handleMarkAsCompleted = async () => {
         body: JSON.stringify({ currentPage: book.totalPages }),
       });
       const data = await res.json();
-      console.log("API response data:", data); // <-- ADD THIS LINE
-      console.log("Updated book object:", data.book); // <-- ADD THIS LINE
 
       if (res.ok) {
         setBook(data.book);
@@ -67,7 +65,7 @@ const handleMarkAsCompleted = async () => {
       alert('An error occurred.');
     }
   };
-  
+
   const handleAddNote = async (e) => {
     e.preventDefault();
     if (!noteContent.trim() || !book) return;
@@ -137,58 +135,57 @@ const handleMarkAsCompleted = async () => {
     }
   };
 
-
   if (loading) return <p>Loading book details...</p>;
-  if (error) return <p className={styles.errorMessage}>{error}</p>;
+  if (error) return <p className="errorMessage">{error}</p>; // Assuming errorMessage is a global class
   if (!book) return <p>Book not found.</p>;
 
   return (
-    <div className={styles.bookDetailsContainer}>
+    <div className="bookDetailsContainer"> {/* Replaced styles.bookDetailsContainer */}
       <h1>{book.title}</h1>
-      <p className={styles.author}>by {book.author}</p>
-      <p className={styles.genre}>Genre: {book.genre || 'N/A'}</p>
-      <p className={styles.pages}>Total Pages: {book.totalPages}</p>
-      <p className={styles.status}>Status: {book.status}</p>
+      <p className="author">by {book.author}</p> {/* Replaced styles.author */}
+      <p className="genre">Genre: {book.genre || 'N/A'}</p> {/* Replaced styles.genre */}
+      <p className="pages">Total Pages: {book.totalPages}</p> {/* Replaced styles.pages */}
+      <p className="status">Status: {book.status}</p> {/* Replaced styles.status */}
       {book.startDate && <p>Started: {new Date(book.startDate).toLocaleDateString()}</p>}
       {book.completionDate && <p>Completed: {new Date(book.completionDate).toLocaleDateString()}</p>}
 
-      <h2 className={styles.sectionTitle}>Reading Progress</h2>
+      <h2 className="sectionTitle">Reading Progress</h2> {/* Replaced styles.sectionTitle */}
       <ProgressBar currentPage={book.currentPage} totalPages={book.totalPages} />
-      <p className={styles.progressText}>
+      <p className="progressText"> {/* Replaced styles.progressText */}
         Page {book.currentPage} of {book.totalPages} ({book.progress.toFixed(1)}%)
       </p>
 
-        <div className={styles.actionButtons}>
-          <Link href={`/book/${id}/update`} className={styles.updateProgressButton}>
-            Update Progress
-          </Link>
+      <div className="actionButtons"> {/* Replaced styles.actionButtons */}
+        <Link href={`/book/${id}/update`} className="updateProgressButton"> {/* Replaced styles.updateProgressButton */}
+          Update Progress
+        </Link>
         {book.status === 'Reading' && (
-          <button onClick={handleMarkAsCompleted} className={styles.markCompletedButton}>
+          <button onClick={handleMarkAsCompleted} className="markCompletedButton"> {/* Replaced styles.markCompletedButton */}
             Mark as Completed
           </button>
         )}
-        </div>
+      </div>
 
       {book.description && (
         <>
-          <h2 className={styles.sectionTitle}>Description</h2>
-          <p className={styles.description}>{book.description}</p>
+          <h2 className="sectionTitle">Description</h2> {/* Replaced styles.sectionTitle */}
+          <p className="description">{book.description}</p> {/* Replaced styles.description */}
         </>
       )}
 
       {book.tags && book.tags.length > 0 && (
         <>
-          <h2 className={styles.sectionTitle}>Tags</h2>
-          <div className={styles.tags}>
+          <h2 className="sectionTitle">Tags</h2> {/* Replaced styles.sectionTitle */}
+          <div className="tags"> {/* Replaced styles.tags */}
             {book.tags.map((tag, index) => (
-              <span key={index} className={styles.tag}>{tag}</span>
+              <span key={index} className="tag">{tag}</span>
             ))}
           </div>
         </>
       )}
 
-      <h2 className={styles.sectionTitle}>Notes</h2>
-      <form onSubmit={handleAddNote} className={styles.noteForm}>
+      <h2 className="sectionTitle">Notes</h2> {/* Replaced styles.sectionTitle */}
+      <form onSubmit={handleAddNote} className="noteForm"> {/* Replaced styles.noteForm */}
         <textarea
           placeholder="Add a new note..."
           value={noteContent}
@@ -197,12 +194,12 @@ const handleMarkAsCompleted = async () => {
         ></textarea>
         <button type="submit">Add Note</button>
       </form>
-      <ul className={styles.notesList}>
+      <ul className="notesList"> {/* Replaced styles.notesList */}
         {book.notes && book.notes.length > 0 ? (
-          book.notes.slice().reverse().map((note, index) => ( // Reverse to show newest first
-            <li key={index} className={styles.noteItem}>
+          book.notes.slice().reverse().map((note, index) => (
+            <li key={index} className="noteItem"> {/* Replaced styles.noteItem */}
               <p>{note.content}</p>
-              <span className={styles.noteTimestamp}>
+              <span className="noteTimestamp"> {/* Replaced styles.noteTimestamp */}
                 {new Date(note.timestamp).toLocaleString()}
               </span>
             </li>
@@ -212,8 +209,8 @@ const handleMarkAsCompleted = async () => {
         )}
       </ul>
 
-      <h2 className={styles.sectionTitle}>Quotes</h2>
-      <form onSubmit={handleAddQuote} className={styles.quoteForm}>
+      <h2 className="sectionTitle">Quotes</h2> {/* Replaced styles.sectionTitle */}
+      <form onSubmit={handleAddQuote} className="quoteForm"> {/* Replaced styles.quoteForm */}
         <textarea
           placeholder="Add a new quote..."
           value={quoteContent}
@@ -230,12 +227,12 @@ const handleMarkAsCompleted = async () => {
         />
         <button type="submit">Add Quote</button>
       </form>
-      <ul className={styles.quotesList}>
+      <ul className="quotesList"> {/* Replaced styles.quotesList */}
         {book.quotes && book.quotes.length > 0 ? (
-          book.quotes.slice().reverse().map((quote, index) => ( // Reverse to show newest first
-            <li key={index} className={styles.quoteItem}>
-              <p>"{quote.content}"</p>
-              <span className={styles.quoteDetails}>
+          book.quotes.slice().reverse().map((quote, index) => (
+            <li key={index} className="quoteItem"> {/* Replaced styles.quoteItem */}
+              <p>&quot;{quote.content}&quot;</p> {/* ESCAPED QUOTES HERE */}
+              <span className="quoteDetails"> {/* Replaced styles.quoteDetails */}
                 {quote.page ? `Page ${quote.page} | ` : ''}
                 {new Date(quote.timestamp).toLocaleString()}
               </span>
@@ -246,15 +243,15 @@ const handleMarkAsCompleted = async () => {
         )}
       </ul>
 
-      <h2 className={styles.sectionTitle}>Review & Rating</h2>
+      <h2 className="sectionTitle">Review & Rating</h2> {/* Replaced styles.sectionTitle */}
       {book.status === 'Completed' ? (
-        <form onSubmit={handleSubmitReview} className={styles.reviewForm}>
-          <div className={styles.ratingSection}>
+        <form onSubmit={handleSubmitReview} className="reviewForm"> {/* Replaced styles.reviewForm */}
+          <div className="ratingSection"> {/* Replaced styles.ratingSection */}
             <label>Rating:</label>
             {[1, 2, 3, 4, 5].map((star) => (
               <span
                 key={star}
-                className={`${styles.star} ${star <= rating ? styles.filledStar : ''}`}
+                className={`star ${star <= rating ? 'filledStar' : ''}`} 
                 onClick={() => setRating(star)}
               >
                 &#9733;
@@ -273,11 +270,10 @@ const handleMarkAsCompleted = async () => {
         <p>You can add a review and rating once the book is completed.</p>
       )}
 
-
-      <h2 className={styles.sectionTitle}>Reading History</h2>
+      <h2 className="sectionTitle">Reading History</h2> {/* Replaced styles.sectionTitle */}
       {book.readingHistory && book.readingHistory.length > 0 ? (
-        <ul className={styles.historyList}>
-          {book.readingHistory.slice().reverse().map((entry, index) => ( // Show newest first
+        <ul className="historyList"> {/* Replaced styles.historyList */}
+          {book.readingHistory.slice().reverse().map((entry, index) => (
             <li key={index}>
               Read up to page {entry.page} on {new Date(entry.timestamp).toLocaleString()}
             </li>
@@ -287,7 +283,6 @@ const handleMarkAsCompleted = async () => {
         <p>No reading history yet.</p>
       )}
 
-      {/* Delete Book Button (Add with confirmation dialog for safety) */}
       <button
         onClick={async () => {
           if (window.confirm('Are you sure you want to delete this book?')) {
@@ -295,7 +290,7 @@ const handleMarkAsCompleted = async () => {
               const res = await fetch(`/api/books/${id}`, { method: 'DELETE' });
               if (res.ok) {
                 alert('Book deleted successfully!');
-                router.push('/dashboard'); // Redirect after deletion
+                router.push('/dashboard');
               } else {
                 const data = await res.json();
                 alert(data.message || 'Failed to delete book.');
@@ -306,7 +301,7 @@ const handleMarkAsCompleted = async () => {
             }
           }
         }}
-        className={styles.deleteButton}
+        className="deleteButton" 
       >
         Delete Book
       </button>

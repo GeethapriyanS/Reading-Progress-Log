@@ -1,4 +1,3 @@
-// app/api/books/[id]/route.js
 import dbConnect from '../../../../lib/dbConnect';
 import Book from '../../../../lib/models/Book';
 import { NextResponse } from 'next/server';
@@ -43,8 +42,8 @@ export async function PUT(req, { params }) {
     if (description) updateFields.description = description;
     if (tags) updateFields.tags = tags;
     if (coverImage) updateFields.coverImage = coverImage;
-    if (notes) updateFields.notes = notes; // Assumes entire notes array is sent for update
-    if (quotes) updateFields.quotes = quotes; // Assumes entire quotes array is sent for update
+    if (notes) updateFields.notes = notes; 
+    if (quotes) updateFields.quotes = quotes; 
     if (rating !== undefined) updateFields.rating = rating;
     if (review !== undefined) updateFields.review = review;
 
@@ -59,7 +58,6 @@ export async function PUT(req, { params }) {
       return NextResponse.json({ message: 'Book not found' }, { status: 404 });
     }
 
-    // Access the virtual property 'progress'
     const bookWithProgress = updatedBook.toObject({ virtuals: true });
 
     return NextResponse.json({ message: 'Book updated successfully', book: bookWithProgress }, { status: 200 });

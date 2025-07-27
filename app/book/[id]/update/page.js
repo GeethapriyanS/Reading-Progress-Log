@@ -1,26 +1,21 @@
 // app/book/[id]/update/page.js
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react'; // Import useCallback
 import { useParams, useRouter } from 'next/navigation';
 import ProgressBar from '../../../components/ProgressBar';
-import styles from './style.module.css'; // Create this CSS file
+// REMOVED: import styles from './style.module.css'; // Assuming you've moved styles to globals.css
 
 export default function UpdateProgressPage() {
-  const { id } = useParams(); // Book ID
+  const { id } = useParams();
   const router = useRouter();
   const [book, setBook] = useState(null);
   const [currentPageInput, setCurrentPageInput] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
-  useEffect(() => {
-    if (id) {
-      fetchBookForUpdate();
-    }
-  }, [id]);
-
-  const fetchBookForUpdate = async () => {
+  // Wrap fetchBookForUpdate in useCallback
+  const fetchBookForUpdate = useCallback(async () => {
     setLoading(true);
     setError('');
     try {
@@ -28,7 +23,7 @@ export default function UpdateProgressPage() {
       const data = await res.json();
       if (res.ok) {
         setBook(data.book);
-        setCurrentPageInput(data.book.currentPage.toString()); // Set initial value
+        setCurrentPageInput(data.book.currentPage.toString());
       } else {
         setError(data.message || 'Failed to fetch book for update.');
       }
@@ -38,7 +33,13 @@ export default function UpdateProgressPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [id]); // id is a dependency for fetchBookForUpdate
+
+  useEffect(() => {
+    if (id) {
+      fetchBookForUpdate();
+    }
+  }, [id, fetchBookForUpdate]); // Add fetchBookForUpdate to dependency array
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -64,7 +65,7 @@ export default function UpdateProgressPage() {
       const data = await res.json();
       if (res.ok) {
         alert('Reading progress updated successfully!');
-        router.push(`/book/${id}`); 
+        router.push(`/book/${id}`);
       } else {
         setError(data.message || 'Failed to update progress.');
       }
@@ -75,23 +76,23 @@ export default function UpdateProgressPage() {
   };
 
   if (loading) return <p>Loading book data...</p>;
-  if (error) return <p className={styles.errorMessage}>{error}</p>;
+  if (error) return <p className="errorMessage">{error}</p>; // Assuming errorMessage is a global class
   if (!book) return <p>Book not found.</p>;
 
   return (
-    <div className={styles.updateProgressContainer}>
-      <h1>Update Progress for "{book.title}"</h1>
-      <p className={styles.author}>by {book.author}</p>
-      <p className={styles.pages}>Total Pages: {book.totalPages}</p>
+    <div className="updateProgressContainer"> {/* Replaced styles.updateProgressContainer */}
+      <h1>Update Progress for &quot;{book.title}&quot;</h1> {/* ESCAPED QUOTES HERE */}
+      <p className="author">by {book.author}</p> {/* Replaced styles.author */}
+      <p className="pages">Total Pages: {book.totalPages}</p> {/* Replaced styles.pages */}
 
-      <div className={styles.currentProgress}>
+      <div className="currentProgress"> {/* Replaced styles.currentProgress */}
         <h2>Current Progress:</h2>
         <ProgressBar currentPage={book.currentPage} totalPages={book.totalPages} />
-        <p className={styles.progressText}>Page {book.currentPage} of {book.totalPages}</p>
+        <p className="progressText">Page {book.currentPage} of {book.totalPages}</p> {/* Replaced styles.progressText */}
       </div>
 
-      <form onSubmit={handleSubmit} className={styles.updateForm}>
-        <div className={styles.formGroup}>
+      <form onSubmit={handleSubmit} className="updateForm"> {/* Replaced styles.updateForm */}
+        <div className="formGroup"> {/* Replaced styles.formGroup */}
           <label htmlFor="currentPage">Enter New Current Page Number:</label>
           <input
             type="number"
@@ -103,7 +104,7 @@ export default function UpdateProgressPage() {
             required
           />
         </div>
-        <button type="submit" className={styles.submitButton}>Update Progress</button>
+        <button type="submit" className="submitButton">Update Progress</button> {/* Replaced styles.submitButton */}
       </form>
     </div>
   );
