@@ -136,26 +136,26 @@ export default function BookDetailsPage() {
   };
 
   if (loading) return <p>Loading book details...</p>;
-  if (error) return <p className="errorMessage">{error}</p>; // Assuming errorMessage is a global class
+  if (error) return <p className="errorMessage">{error}</p>; 
   if (!book) return <p>Book not found.</p>;
 
   return (
-    <div className="bookDetailsContainer"> {/* Replaced styles.bookDetailsContainer */}
+    <div className="bookDetailsContainer"> 
       <h1>{book.title}</h1>
-      <p className="author">by {book.author}</p> {/* Replaced styles.author */}
-      <p className="genre">Genre: {book.genre || 'N/A'}</p> {/* Replaced styles.genre */}
-      <p className="pages">Total Pages: {book.totalPages}</p> {/* Replaced styles.pages */}
-      <p className="status">Status: {book.status}</p> {/* Replaced styles.status */}
+      <p className="author">by {book.author}</p> 
+      <p className="genre">Genre: {book.genre || 'N/A'}</p> 
+      <p className="pages">Total Pages: {book.totalPages}</p> 
+      <p className="status">Status: {book.status}</p> 
       {book.startDate && <p>Started: {new Date(book.startDate).toLocaleDateString()}</p>}
       {book.completionDate && <p>Completed: {new Date(book.completionDate).toLocaleDateString()}</p>}
 
-      <h2 className="sectionTitle">Reading Progress</h2> {/* Replaced styles.sectionTitle */}
+      <h2 className="sectionTitle">Reading Progress</h2> 
       <ProgressBar currentPage={book.currentPage} totalPages={book.totalPages} />
-      <p className="progressText"> {/* Replaced styles.progressText */}
+      <p className="progressText"> 
         Page {book.currentPage} of {book.totalPages} ({book.progress.toFixed(1)}%)
       </p>
 
-      <div className="actionButtons"> {/* Replaced styles.actionButtons */}
+      <div className="actionButtons"> 
         <Link href={`/book/${id}/update`} className="updateProgressButton"> {/* Replaced styles.updateProgressButton */}
           Update Progress
         </Link>
@@ -168,15 +168,15 @@ export default function BookDetailsPage() {
 
       {book.description && (
         <>
-          <h2 className="sectionTitle">Description</h2> {/* Replaced styles.sectionTitle */}
-          <p className="description">{book.description}</p> {/* Replaced styles.description */}
+          <h2 className="sectionTitle">Description</h2> 
+          <p className="description">{book.description}</p> 
         </>
       )}
 
       {book.tags && book.tags.length > 0 && (
         <>
-          <h2 className="sectionTitle">Tags</h2> {/* Replaced styles.sectionTitle */}
-          <div className="tags"> {/* Replaced styles.tags */}
+          <h2 className="sectionTitle">Tags</h2>
+          <div className="tags"> 
             {book.tags.map((tag, index) => (
               <span key={index} className="tag">{tag}</span>
             ))}
@@ -184,8 +184,8 @@ export default function BookDetailsPage() {
         </>
       )}
 
-      <h2 className="sectionTitle">Notes</h2> {/* Replaced styles.sectionTitle */}
-      <form onSubmit={handleAddNote} className="noteForm"> {/* Replaced styles.noteForm */}
+      <h2 className="sectionTitle">Notes</h2> 
+      <form onSubmit={handleAddNote} className="noteForm"> 
         <textarea
           placeholder="Add a new note..."
           value={noteContent}
@@ -194,12 +194,12 @@ export default function BookDetailsPage() {
         ></textarea>
         <button type="submit">Add Note</button>
       </form>
-      <ul className="notesList"> {/* Replaced styles.notesList */}
+      <ul className="notesList"> 
         {book.notes && book.notes.length > 0 ? (
           book.notes.slice().reverse().map((note, index) => (
-            <li key={index} className="noteItem"> {/* Replaced styles.noteItem */}
+            <li key={index} className="noteItem"> 
               <p>{note.content}</p>
-              <span className="noteTimestamp"> {/* Replaced styles.noteTimestamp */}
+              <span className="noteTimestamp"> 
                 {new Date(note.timestamp).toLocaleString()}
               </span>
             </li>
@@ -209,8 +209,8 @@ export default function BookDetailsPage() {
         )}
       </ul>
 
-      <h2 className="sectionTitle">Quotes</h2> {/* Replaced styles.sectionTitle */}
-      <form onSubmit={handleAddQuote} className="quoteForm"> {/* Replaced styles.quoteForm */}
+      <h2 className="sectionTitle">Quotes</h2> 
+      <form onSubmit={handleAddQuote} className="quoteForm"> 
         <textarea
           placeholder="Add a new quote..."
           value={quoteContent}
@@ -227,12 +227,12 @@ export default function BookDetailsPage() {
         />
         <button type="submit">Add Quote</button>
       </form>
-      <ul className="quotesList"> {/* Replaced styles.quotesList */}
+      <ul className="quotesList"> 
         {book.quotes && book.quotes.length > 0 ? (
           book.quotes.slice().reverse().map((quote, index) => (
-            <li key={index} className="quoteItem"> {/* Replaced styles.quoteItem */}
-              <p>&quot;{quote.content}&quot;</p> {/* ESCAPED QUOTES HERE */}
-              <span className="quoteDetails"> {/* Replaced styles.quoteDetails */}
+            <li key={index} className="quoteItem"> 
+              <p>&quot;{quote.content}&quot;</p> 
+              <span className="quoteDetails"> 
                 {quote.page ? `Page ${quote.page} | ` : ''}
                 {new Date(quote.timestamp).toLocaleString()}
               </span>
@@ -243,10 +243,10 @@ export default function BookDetailsPage() {
         )}
       </ul>
 
-      <h2 className="sectionTitle">Review & Rating</h2> {/* Replaced styles.sectionTitle */}
+      <h2 className="sectionTitle">Review & Rating</h2>
       {book.status === 'Completed' ? (
-        <form onSubmit={handleSubmitReview} className="reviewForm"> {/* Replaced styles.reviewForm */}
-          <div className="ratingSection"> {/* Replaced styles.ratingSection */}
+        <form onSubmit={handleSubmitReview} className="reviewForm"> 
+          <div className="ratingSection"> 
             <label>Rating:</label>
             {[1, 2, 3, 4, 5].map((star) => (
               <span
@@ -270,9 +270,9 @@ export default function BookDetailsPage() {
         <p>You can add a review and rating once the book is completed.</p>
       )}
 
-      <h2 className="sectionTitle">Reading History</h2> {/* Replaced styles.sectionTitle */}
+      <h2 className="sectionTitle">Reading History</h2> 
       {book.readingHistory && book.readingHistory.length > 0 ? (
-        <ul className="historyList"> {/* Replaced styles.historyList */}
+        <ul className="historyList"> 
           {book.readingHistory.slice().reverse().map((entry, index) => (
             <li key={index}>
               Read up to page {entry.page} on {new Date(entry.timestamp).toLocaleString()}

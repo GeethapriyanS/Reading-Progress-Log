@@ -1,9 +1,7 @@
-// app/completed/page.js
 'use client';
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-// REMOVED: import styles from './style.module.css'; // Assuming you've moved styles to globals.css
 
 export default function CompletedBooksPage() {
   const [completedBooks, setCompletedBooks] = useState([]);
@@ -42,11 +40,11 @@ export default function CompletedBooksPage() {
   };
 
   return (
-    <div className="completedBooksContainer"> {/* Replaced styles.completedBooksContainer */}
+    <div className="completedBooksContainer">
       <h1>Completed Books</h1>
 
       {loading && <p>Loading completed books...</p>}
-      {error && <p className="errorMessage">{error}</p>} {/* Assuming errorMessage is a global class */}
+      {error && <p className="errorMessage">{error}</p>} 
 
       {!loading && !error && completedBooks.length === 0 ? (
         <p className="noBooksMessage">You haven&apos;t completed any books yet. Keep reading!</p> 

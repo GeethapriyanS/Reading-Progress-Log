@@ -34,7 +34,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="container"> 
+    <div className="container1"> 
       <h1>Login</h1>
       <form onSubmit={handleSubmit} className="form">
         {error && <p className="errorMessage">{error}</p>}
@@ -58,7 +58,7 @@ export default function LoginPage() {
             required
           />
         </div>
-        <button type="submit" className="submitButton">Login</button> 
+        <button type="submit" className="submitButton1">Login</button> 
       </form>
     </div>
   );

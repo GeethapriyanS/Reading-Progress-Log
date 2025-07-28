@@ -1,4 +1,3 @@
-// app/dashboard/page.js
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -82,7 +81,7 @@ export default function DashboardPage() {
                     </Link>
                     <p>by {book.author}</p>
                     <ProgressBar currentPage={book.currentPage} totalPages={book.totalPages} />
-                    <p className="progressText">Page {book.currentPage} of {book.totalPages}</p> {/* CORRECTED " of " here */}
+                    <p className="progressText">Page {book.currentPage} of {book.totalPages}</p> 
                     <Link href={`/book/${book._id}/update`} className="updateButton">
                       Update Progress
                     </Link>

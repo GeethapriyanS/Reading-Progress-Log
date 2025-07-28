@@ -191,7 +191,7 @@ export default function AddBookPage() {
           />
         </div>
 
-        <button type="submit" className="submitButton">Add Book</button>
+        <button type="submit" className="submitButton1">Add Book</button>
       </form>
     </div>
   );

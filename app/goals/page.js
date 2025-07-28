@@ -124,7 +124,7 @@ export default function GoalsPage() {
               required
             />
           </div>
-          <button type="submit" className="submitButton">Add Goal</button>
+          <button type="submit" className="submitButton1">Add Goal</button>
         </form>
       </section>
 

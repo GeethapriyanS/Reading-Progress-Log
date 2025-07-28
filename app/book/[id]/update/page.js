@@ -1,10 +1,8 @@
-// app/book/[id]/update/page.js
 'use client';
 
-import { useState, useEffect, useCallback } from 'react'; // Import useCallback
+import { useState, useEffect, useCallback } from 'react'; 
 import { useParams, useRouter } from 'next/navigation';
 import ProgressBar from '../../../components/ProgressBar';
-// REMOVED: import styles from './style.module.css'; // Assuming you've moved styles to globals.css
 
 export default function UpdateProgressPage() {
   const { id } = useParams();
@@ -14,7 +12,6 @@ export default function UpdateProgressPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
-  // Wrap fetchBookForUpdate in useCallback
   const fetchBookForUpdate = useCallback(async () => {
     setLoading(true);
     setError('');
@@ -33,13 +30,13 @@ export default function UpdateProgressPage() {
     } finally {
       setLoading(false);
     }
-  }, [id]); // id is a dependency for fetchBookForUpdate
+  }, [id]); 
 
   useEffect(() => {
     if (id) {
       fetchBookForUpdate();
     }
-  }, [id, fetchBookForUpdate]); // Add fetchBookForUpdate to dependency array
+  }, [id, fetchBookForUpdate]); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -76,23 +73,23 @@ export default function UpdateProgressPage() {
   };
 
   if (loading) return <p>Loading book data...</p>;
-  if (error) return <p className="errorMessage">{error}</p>; // Assuming errorMessage is a global class
+  if (error) return <p className="errorMessage">{error}</p>;
   if (!book) return <p>Book not found.</p>;
 
   return (
-    <div className="updateProgressContainer"> {/* Replaced styles.updateProgressContainer */}
-      <h1>Update Progress for &quot;{book.title}&quot;</h1> {/* ESCAPED QUOTES HERE */}
-      <p className="author">by {book.author}</p> {/* Replaced styles.author */}
-      <p className="pages">Total Pages: {book.totalPages}</p> {/* Replaced styles.pages */}
+    <div className="updateProgressContainer"> 
+      <h1>Update Progress for &quot;{book.title}&quot;</h1> 
+      <p className="author">by {book.author}</p> 
+      <p className="pages">Total Pages: {book.totalPages}</p> 
 
-      <div className="currentProgress"> {/* Replaced styles.currentProgress */}
+      <div className="currentProgress">
         <h2>Current Progress:</h2>
         <ProgressBar currentPage={book.currentPage} totalPages={book.totalPages} />
         <p className="progressText">Page {book.currentPage} of {book.totalPages}</p> {/* Replaced styles.progressText */}
       </div>
 
-      <form onSubmit={handleSubmit} className="updateForm"> {/* Replaced styles.updateForm */}
-        <div className="formGroup"> {/* Replaced styles.formGroup */}
+      <form onSubmit={handleSubmit} className="updateForm"> 
+        <div className="formGroup">
           <label htmlFor="currentPage">Enter New Current Page Number:</label>
           <input
             type="number"
@@ -104,7 +101,7 @@ export default function UpdateProgressPage() {
             required
           />
         </div>
-        <button type="submit" className="submitButton">Update Progress</button> {/* Replaced styles.submitButton */}
+        <button type="submit" className="submitButton">Update Progress</button> 
       </form>
     </div>
   );

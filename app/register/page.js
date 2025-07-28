@@ -34,7 +34,7 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="container"> 
+    <div className="container1"> 
       <h1>Register</h1>
       <form onSubmit={handleSubmit} className="form"> 
         {error && <p className="errorMessage">{error}</p>} 
@@ -68,7 +68,7 @@ export default function RegisterPage() {
             required
           />
         </div>
-        <button type="submit" className="submitButton">Register</button> 
+        <button type="submit" className="submitButton1">Register</button> 
       </form>
     </div>
   );

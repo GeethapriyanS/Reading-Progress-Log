@@ -61,6 +61,9 @@ button:hover {
   justify-content: space-between;
   align-items: center;
   color: white; 
+  width: 98%;
+  position:fixed;
+  top: 0;
   box-shadow: rgba(14, 63, 126, 0.04) 0px 0px 0px 1px, rgba(42, 51, 69, 0.04) 0px 1px 1px -0.5px, rgba(42, 51, 70, 0.04) 0px 3px 3px -1.5px, rgba(42, 51, 70, 0.04) 0px 6px 6px -3px, rgba(14, 63, 126, 0.04) 0px 12px 12px -6px, rgba(14, 63, 126, 0.04) 0px 24px 24px -12px;
 }
 
@@ -77,7 +80,7 @@ button:hover {
   margin: 0;
   padding: 0;
   display: flex;
-  gap: 25px;
+  gap: 30px;
 }
 
 .navItem {
@@ -121,9 +124,9 @@ button:hover {
 
 
 
-.container {
+.container1 {
   max-width: 400px;
-  margin: 60px auto;
+  margin: 100px auto;
   padding: 30px;
   background-color: #fff;
   border-radius: 8px;
@@ -131,10 +134,11 @@ button:hover {
   text-align: center;
 }
 
-.container h1 {
+.container1 h1 {
   color: #9929EA;
   margin-bottom: 30px;
   font-size: 2.2em;
+  text-shadow: 1px 1px 3px rgba(153, 41, 234, 0.4);
 }
 
 .formGroup {
@@ -148,6 +152,7 @@ button:hover {
   font-weight: bold;
   color: #555;
   font-size: 0.95em;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
 }
 
 .formGroup input[type="email"],
@@ -166,7 +171,7 @@ button:hover {
   outline: none;
 }
 
-.submitButton {
+.submitButton1 {
   width: 100%;
   padding: 14px;
   background-color: #CC66DA;
@@ -178,7 +183,7 @@ button:hover {
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.submitButton:hover {
+.submitButton1:hover {
   background-color: #e58fe5;
   transform: translateY(-1px);
 }
@@ -200,7 +205,8 @@ button:hover {
 
 
 .dashboardContainer {
-  padding: 50px;
+  padding: 40px;
+  margin-top: 80px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 
@@ -343,9 +349,11 @@ button:hover {
 .container {
   max-width: 600px;
   margin: 40px auto;
+  margin-top: 90px;
   padding: 40px;
   background-color: #ffffff;
   border-radius: 8px;
+  width: 45%;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -354,6 +362,8 @@ button:hover {
   color: #333;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
   margin-bottom: 30px;
+  color: #9929EA;
+  text-shadow: 1px 1px 3px rgba(153, 41, 234, 0.4);
 }
 
 .formGroup {
@@ -367,16 +377,24 @@ button:hover {
   color: #555;
 }
 
-.formGroup input[type="text"],
-.formGroup input[type="number"],
-.formGroup input[type="date"],
-.formGroup textarea {
+.formGroup input {
   width: 100%;
   padding: 10px;
-  border: 1px solid #6d6c6c;
   border-radius: 5px;
   font-size: 1em;
   outline: none;
+}
+
+.formGroup select{
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 1em;
+  outline: none;
+}
+
+.formGroup input:hover{
+    border: 1px solid #9929EA;
 }
 
 .formGroup textarea {
@@ -426,6 +444,7 @@ button:hover {
 
 
 .goalsContainer {
+  margin-top: 50px;
   padding: 20px;
 }
 
@@ -470,16 +489,7 @@ button:hover {
   color: #555;
 }
 
-.formGroup input[type="number"],
-.formGroup input[type="date"],
-.formGroup select {
-  width: calc(100% - 22px);
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 1em;
-  box-sizing: border-box;
-}
+
 
 .submitButton {
   width: 97%;
@@ -561,4 +571,414 @@ button:hover {
   margin-bottom: 20px;
   border-radius: 5px;
   text-align: center;
+}
+
+
+
+
+/* for update and progress page css */
+
+/* app/book/[id]/style.module.css */
+.bookDetailsContainer {
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  margin-bottom: 40px;
+}
+
+.bookDetailsContainer h1 {
+  font-size: 2.5em;
+  color: #2c3e50;
+  margin-bottom: 5px;
+}
+
+.author {
+  font-size: 1.2em;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.genre, .pages, .status {
+  font-size: 1em;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.sectionTitle {
+  font-size: 1.8em;
+  color: #34495e;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.progressText {
+  text-align: right;
+  font-size: 0.9em;
+  color: #777;
+  margin-top: 10px;
+}
+
+.actionButtons {
+  margin-top: 25px;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.updateProgressButton, .markCompletedButton {
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  border: none;
+  font-size: 1em;
+}
+
+.updateProgressButton {
+  background-color: #007bff;
+  color: white;
+}
+
+.updateProgressButton:hover {
+  background-color: #0056b3;
+}
+
+.markCompletedButton {
+  background-color: #28a745;
+  color: white;
+}
+
+.markCompletedButton:hover {
+  background-color: #218838;
+}
+
+.description {
+  line-height: 1.6;
+  color: #444;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.tag {
+  background-color: #e0e0e0;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 0.85em;
+  color: #555;
+}
+
+.noteForm, .quoteForm, .reviewForm {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.05);
+}
+
+.noteForm textarea, .quoteForm textarea, .reviewForm textarea {
+  width: calc(100% - 20px);
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.noteForm button, .quoteForm button, .reviewForm button {
+  padding: 10px 15px;
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.noteForm button:hover, .quoteForm button:hover, .reviewForm button:hover {
+  background-color: #5a6268;
+}
+
+.quoteForm input[type="number"] {
+  width: auto;
+  margin-right: 10px;
+}
+
+.notesList, .quotesList, .historyList {
+  list-style: none;
+  padding: 0;
+}
+
+.noteItem, .quoteItem {
+  background-color: #f0f0f0;
+  padding: 15px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  border-left: 5px solid #007bff;
+}
+
+.noteItem p, .quoteItem p {
+  margin-top: 0;
+  margin-bottom: 5px;
+  font-style: italic;
+}
+
+.noteTimestamp, .quoteDetails {
+  font-size: 0.8em;
+  color: #888;
+  display: block;
+  text-align: right;
+}
+
+.quoteItem {
+  border-left-color: #28a745; 
+}
+
+.historyList li {
+  background-color: #f0f0f0;
+  padding: 10px 15px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  border-left: 3px solid #6c757d;
+}
+
+.ratingSection {
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.ratingSection label {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.star {
+  font-size: 1.8em;
+  color: #ccc;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.star:hover {
+  color: #ffcc00;
+}
+
+.filledStar {
+  color: #ffcc00;
+}
+
+.deleteButton {
+  background-color: #dc3545;
+  margin-top: 30px;
+  padding: 10px 20px;
+  font-size: 1.1em;
+  display: block;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.deleteButton:hover {
+  background-color: #c82333;
+}
+
+
+
+/* update css */
+
+.updateProgressContainer {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 25px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.updateProgressContainer h1 {
+  font-size: 2em;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.author {
+  font-size: 1.1em;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+.pages {
+  font-size: 1em;
+  color: #666;
+  margin-bottom: 25px;
+}
+
+.currentProgress {
+  margin-bottom: 30px;
+  padding: 15px;
+  background-color: #f0f2f5;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+}
+
+.currentProgress h2 {
+  font-size: 1.4em;
+  color: #34495e;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.progressText {
+  margin-top: 10px;
+  font-size: 0.95em;
+  color: #777;
+}
+
+.updateForm {
+  margin-top: 20px;
+}
+
+.submitButton {
+  width: 100%;
+  padding: 14px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.submitButton:hover {
+  background-color: #0056b3;
+  transform: translateY(-1px);
+}
+
+.errorMessage {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 0.9em;
+}
+
+
+
+
+/* app/completed/style.module.css */
+.completedBooksContainer {
+  padding: 20px;
+}
+
+.completedBooksContainer h1 {
+  text-align: center;
+  margin-bottom: 40px;
+  color: #2c3e50;
+}
+
+.errorMessage {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.noBooksMessage {
+  text-align: center;
+  font-size: 1.2em;
+  color: #777;
+  padding: 30px;
+  background-color: #f0f2f5;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.bookGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.bookCard {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border-left: 5px solid #28a745; /* Green border for completed books */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.bookCard h3 {
+  margin-top: 0;
+  font-size: 1.4em;
+  margin-bottom: 5px;
+  color: #34495e;
+}
+
+.bookTitleLink {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.bookTitleLink:hover {
+  text-decoration: underline;
+}
+
+.bookCard p {
+  font-size: 0.95em;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.completionDate {
+  font-style: italic;
+  color: #666;
+}
+
+.rating {
+  font-weight: bold;
+  color: #e6b100; 
+}
+
+.review {
+  font-style: italic;
+  color: #777;
+  margin-top: 10px;
+  line-height: 1.4;
+}
+
+.viewDetailsButton {
+  display: inline-block;
+  padding: 8px 15px;
+  background-color: #6c757d;
+  color: white;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  margin-top: 15px;
+  transition: background-color 0.3s ease;
+}
+
+.viewDetailsButton:hover {
+  background-color: #5a6268;
 }
