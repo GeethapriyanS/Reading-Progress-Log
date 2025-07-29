@@ -107,18 +107,19 @@ button:hover {
 }
 
 .logoutButton {
-  background-color: #e74c3c;
+  background-color: #9929EA;
   color: white;
   border: none;
   padding: 8px 15px;
   border-radius: 5px;
   cursor: pointer;
   font-size: 1em;
+  font-weight: bold;
   transition: background-color 0.3s ease;
 }
 
 .logoutButton:hover {
-  background-color: #c0392b;
+  background-color: #ae4ff3;
 }
 
 
@@ -129,8 +130,8 @@ button:hover {
   margin: 100px auto;
   padding: 30px;
   background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
+  box-shadow: 0 4px 15px #bc7aeb;
   text-align: center;
 }
 
@@ -177,7 +178,7 @@ button:hover {
   background-color: #CC66DA;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 2px;
   font-size: 1.1em;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
@@ -444,8 +445,10 @@ button:hover {
 
 
 .goalsContainer {
-  margin-top: 50px;
+  margin-top: 20px;
   padding: 20px;
+  margin-left: 20%;
+  width: 60%;
 }
 
 .goalsContainer h1 {
@@ -576,9 +579,6 @@ button:hover {
 
 
 
-/* for update and progress page css */
-
-/* app/book/[id]/style.module.css */
 .bookDetailsContainer {
   padding: 20px;
   background-color: #ffffff;
@@ -879,15 +879,16 @@ button:hover {
 
 
 
-/* app/completed/style.module.css */
 .completedBooksContainer {
   padding: 20px;
+  margin-top: 40px;
 }
 
 .completedBooksContainer h1 {
   text-align: center;
   margin-bottom: 40px;
   color: #2c3e50;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
 }
 
 .errorMessage {
