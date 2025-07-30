@@ -1,11 +1,10 @@
-// app/api/books/[id]/progress/route.js
 import dbConnect from '../../../../../lib/dbConnect';
 import Book from '../../../../../lib/models/Book';
 import { NextResponse } from 'next/server';
 
 export async function PUT(req, { params }) {
   await dbConnect();
-  const { id } = params; // book ID
+  const { id } = params; 
 
   try {
     const { currentPage } = await req.json();
@@ -27,7 +26,6 @@ export async function PUT(req, { params }) {
     book.currentPage = currentPage;
     book.readingHistory.push({ page: currentPage, timestamp: new Date() });
 
-    // Update status if completed
     if (currentPage === book.totalPages && book.status !== 'Completed') {
       book.status = 'Completed';
       book.completionDate = new Date();

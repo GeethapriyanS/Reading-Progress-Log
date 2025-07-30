@@ -3,6 +3,7 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  /* background: linear-gradient(to bottom, #f3e8ff, #d3a2ff, #9929EA); */
 }
 
 .main-content {
@@ -279,9 +280,15 @@ button:hover {
   background-color: #ffffff;
   padding: 20px;
   border-radius: 8px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;  display: flex;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;  
+  display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.bookCard img{
+  border-radius: 8px;
+  margin-bottom: 1rem;
 }
 
 .bookCard h3 {
@@ -584,18 +591,24 @@ button:hover {
   background-color: #ffffff;
   border-radius: 8px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-  margin-bottom: 40px;
+  margin-top: 60px;
+  position: absolute;
+  left: 25%;
+  width: 50%;
+  z-index: -1;
 }
 
 .bookDetailsContainer h1 {
   font-size: 2.5em;
-  color: #2c3e50;
+  color: #be10e9;
   margin-bottom: 5px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
 }
 
 .author {
   font-size: 1.2em;
   color: #555;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
   margin-bottom: 15px;
 }
 
@@ -640,12 +653,15 @@ button:hover {
 }
 
 .updateProgressButton {
-  background-color: #007bff;
-  color: white;
+  background-color: #74b0ef;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
 }
 
 .updateProgressButton:hover {
   background-color: #0056b3;
+  color: white;
+  text-decoration: none;
 }
 
 .markCompletedButton {
@@ -660,6 +676,7 @@ button:hover {
 .description {
   line-height: 1.6;
   color: #444;
+  font-weight: 600;
 }
 
 .tags {
@@ -675,6 +692,7 @@ button:hover {
   border-radius: 4px;
   font-size: 0.85em;
   color: #555;
+  font-weight: bold;
 }
 
 .noteForm, .quoteForm, .reviewForm {
@@ -695,16 +713,17 @@ button:hover {
 
 .noteForm button, .quoteForm button, .reviewForm button {
   padding: 10px 15px;
-  background-color: #6c757d;
-  color: white;
+  background-color: #8fa1f5;
+  color: rgb(255, 255, 255);
   border: none;
   border-radius: 4px;
+  font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .noteForm button:hover, .quoteForm button:hover, .reviewForm button:hover {
-  background-color: #5a6268;
+  background-color: #506cec;
 }
 
 .quoteForm input[type="number"] {
@@ -777,7 +796,7 @@ button:hover {
 }
 
 .deleteButton {
-  background-color: #dc3545;
+  background-color: #ef6573;
   margin-top: 30px;
   padding: 10px 20px;
   font-size: 1.1em;
@@ -785,6 +804,8 @@ button:hover {
   width: fit-content;
   margin-left: auto;
   margin-right: auto;
+  color: #ffffff;
+  font-weight: bold;
 }
 
 .deleteButton:hover {
@@ -975,7 +996,6 @@ button:hover {
   color: white;
   border-radius: 5px;
   text-align: center;
-  text-decoration: none;
   margin-top: 15px;
   transition: background-color 0.3s ease;
 }

@@ -27,7 +27,6 @@ export async function PUT(req, { params }) {
       return NextResponse.json({ message: 'Goal not found' }, { status: 404 });
     }
 
-    // Apply virtuals for progressPercentage
     const goalWithProgress = updatedGoal.toObject({ virtuals: true });
 
     return NextResponse.json({ message: 'Goal updated successfully', goal: goalWithProgress }, { status: 200 });

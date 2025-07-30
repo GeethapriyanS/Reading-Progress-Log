@@ -13,7 +13,6 @@ export async function GET(req, { params }) {
       return NextResponse.json({ message: 'Book not found' }, { status: 404 });
     }
 
-    // Access the virtual property 'progress'
     const bookWithProgress = book.toObject({ virtuals: true });
 
     return NextResponse.json({ book: bookWithProgress }, { status: 200 });

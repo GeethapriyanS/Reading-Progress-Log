@@ -1,4 +1,3 @@
-// app/api/auth/login/route.js
 import dbConnect from '../../../../lib/dbConnect';
 import User from '../../../../lib/models/User';
 import { NextResponse } from 'next/server';
@@ -22,11 +21,6 @@ export async function POST(req) {
     if (!isMatch) {
       return NextResponse.json({ message: 'Invalid credentials' }, { status: 400 });
     }
-
-    // IMPORTANT: In a real application, you would generate a JWT (JSON Web Token) here
-    // and send it back to the client. The client would then store this token
-    // (e.g., in an HttpOnly cookie) and send it with subsequent requests for authentication.
-    // For this basic example, we'll just return success.
     return NextResponse.json({ message: 'Logged in successfully', userId: user._id }, { status: 200 });
   } catch (error) {
     console.error('Login error:', error);

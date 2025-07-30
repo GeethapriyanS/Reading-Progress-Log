@@ -52,6 +52,7 @@ export default function CompletedBooksPage() {
         <div className="bookGrid"> 
           {completedBooks.map(book => (
             <div key={book._id} className="bookCard"> 
+              <img src={book.coverImage} alt=' book image'/>
               <Link href={`/book/${book._id}`} className="bookTitleLink"> 
                 <h3>{book.title}</h3>
               </Link>

@@ -15,7 +15,6 @@ export async function GET(req) {
     }
 
     const goals = await Goal.find({ userId }).sort({ endDate: 1 }); // Sort by end date
-    // Apply virtuals for progressPercentage
     const goalsWithProgress = goals.map(goal => goal.toObject({ virtuals: true }));
 
     return NextResponse.json({ goals: goalsWithProgress }, { status: 200 });
@@ -42,7 +41,6 @@ export async function POST(req) {
       endDate: new Date(endDate),
     });
 
-    // Apply virtuals for progressPercentage
     const goalWithProgress = newGoal.toObject({ virtuals: true });
 
     return NextResponse.json({ message: 'Goal added successfully', goal: goalWithProgress }, { status: 201 });

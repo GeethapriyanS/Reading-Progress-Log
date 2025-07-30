@@ -76,6 +76,7 @@ export default function DashboardPage() {
               <div className="bookGrid">
                 {readingBooks.map(book => (
                   <div key={book._id} className="bookCard">
+                    <img src={book.coverImage} alt=' book image'/>
                     <Link href={`/book/${book._id}`} className="bookTitleLink">
                       <h3>{book.title}</h3>
                     </Link>
@@ -99,6 +100,7 @@ export default function DashboardPage() {
               <div className="bookGrid">
                 {yetToStartBooks.map(book => (
                   <div key={book._id} className="bookCard">
+                    <img src={book.coverImage} alt=' book image'/>
                     <Link href={`/book/${book._id}`} className="bookTitleLink">
                       <h3>{book.title}</h3>
                     </Link>
@@ -118,6 +120,7 @@ export default function DashboardPage() {
               <div className="bookGrid">
                 {completedBooks.map(book => (
                   <div key={book._id} className="bookCard">
+                    <img src={book.coverImage} alt=' book image'/>
                     <Link href={`/book/${book._id}`} className="bookTitleLink">
                       <h3>{book.title}</h3>
                     </Link>

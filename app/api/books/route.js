@@ -1,4 +1,3 @@
-// app/api/books/route.js
 import dbConnect from "../../../lib/dbConnect"
 import Book from '../../../lib/models/Book';
 import { NextResponse } from 'next/server';
@@ -7,8 +6,6 @@ export async function POST(req) {
   await dbConnect();
 
   try {
-    // In a real application, you'd get the userId from an authenticated session/token
-    // For now, assume userId is passed in the request body for testing purposes
     const { userId, title, author, totalPages, genre, startDate, description, tags, coverImage } = await req.json();
 
     if (!userId || !title || !author || !totalPages) {
@@ -39,7 +36,7 @@ export async function GET(req) {
 
   try {
     const { searchParams } = new URL(req.url);
-    const userId = searchParams.get('userId'); // Get userId from query param
+    const userId = searchParams.get('userId'); 
 
     if (!userId) {
       return NextResponse.json({ message: 'User ID is required' }, { status: 400 });
