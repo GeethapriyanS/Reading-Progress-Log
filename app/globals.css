@@ -1003,3 +1003,88 @@ button:hover {
 .viewDetailsButton:hover {
   background-color: #5a6268;
 }
+
+
+
+
+.formLink {
+  margin-top: 1.5rem;
+  text-align: center;
+  color: #555;
+}
+
+.formLink a {
+  color: #6a059b;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.formLink a:hover {
+  color: #7b20c2;
+  text-decoration: underline;
+}
+
+.popup-container {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  max-width: 350px;
+  z-index: 1000;
+  animation: slideIn 0.5s ease-out forwards;
+}
+
+.popup-container p {
+  margin: 0;
+  font-weight: 600;
+}
+
+.popup-container button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.popup-container button:hover {
+  opacity: 1;
+}
+
+.popup-success {
+  background-color: #be10e9;
+  color: white;
+}
+
+.popup-error {
+  background-color: #ec4454;
+  color: white;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(120%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 600px) {
+  .popup-container {
+    top: 1rem;
+    right: 1rem;
+    left: 1rem;
+    max-width: none;
+    font-size: 0.9rem;
+  }
+}
