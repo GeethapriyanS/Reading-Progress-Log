@@ -1,33 +1,18 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useState, Suspense } from 'react';
 import Link from 'next/link';
-import PopupMessage from '../components/PopUp';
+import LoginPopupHandler from './LoginPopUpHandler';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [popupMessage, setPopupMessage] = useState('');
-  const [popupType, setPopupType] = useState('success');
-  const searchParams = useSearchParams();
-
-  useEffect(() => {
-    if (searchParams.get('registered') === 'true') {
-      setPopupMessage('Registration successful! Please log in.');
-      setPopupType('success');
-    }
-  }, [searchParams]);
-
-  const handlePopupClose = () => {
-    setPopupMessage('');
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
-    setPopupMessage('');
+    
     try {
       const res = await fetch('/api/auth/login', {
         method: 'POST',
@@ -38,8 +23,6 @@ export default function LoginPage() {
 
       if (res.ok) {
         localStorage.setItem('userId', data.userId);
-        setPopupMessage('Login successful!');
-        setPopupType('success');
         window.location.href = '/dashboard';
       } else {
         setError(data.message || 'Login failed');
@@ -79,9 +62,9 @@ export default function LoginPage() {
       <div className="formLink">
         Don&apos;t have an account? <Link href="/register">Sign Up</Link>
       </div>
-      {popupMessage && (
-        <PopupMessage message={popupMessage} type={popupType} onClose={handlePopupClose} />
-      )}
+      <Suspense fallback={<></>}>
+        <LoginPopupHandler />
+      </Suspense>
     </div>
   );
 }
