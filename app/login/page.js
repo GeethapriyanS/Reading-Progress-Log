@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import PopupMessage from '../components/PopUp';
 
@@ -11,7 +11,6 @@ export default function LoginPage() {
   const [error, setError] = useState('');
   const [popupMessage, setPopupMessage] = useState('');
   const [popupType, setPopupType] = useState('success');
-  const router = useRouter();
   const searchParams = useSearchParams();
 
   useEffect(() => {
@@ -41,7 +40,7 @@ export default function LoginPage() {
         localStorage.setItem('userId', data.userId);
         setPopupMessage('Login successful!');
         setPopupType('success');
-        window.location.href = '/dashboard'
+        window.location.href = '/dashboard';
       } else {
         setError(data.message || 'Login failed');
       }
@@ -78,7 +77,7 @@ export default function LoginPage() {
         <button type="submit" className="submitButton1">Login</button>
       </form>
       <div className="formLink">
-        Don't have an account? <Link href="/register">Sign Up</Link>
+        Don&apos;t have an account? <Link href="/register">Sign Up</Link>
       </div>
       {popupMessage && (
         <PopupMessage message={popupMessage} type={popupType} onClose={handlePopupClose} />
