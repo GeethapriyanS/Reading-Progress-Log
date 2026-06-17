@@ -142,12 +142,22 @@ export default function BookDetailsPage() {
   return (
     <div className="bookDetailsContainer"> 
       <h1>{book.title}</h1>
-      <p className="author">by {book.author}</p> 
-      <p className="genre">Genre: {book.genre || 'N/A'}</p> 
-      <p className="pages">Total Pages: {book.totalPages}</p> 
-      <p className="status">Status: {book.status}</p> 
-      {book.startDate && <p>Started: {new Date(book.startDate).toLocaleDateString()}</p>}
-      {book.completionDate && <p>Completed: {new Date(book.completionDate).toLocaleDateString()}</p>}
+      
+      <div style={{ display: 'flex', gap: '24px', flexWrap: 'wrap', marginBottom: '24px', alignItems: 'flex-start' }}>
+        {book.coverImage && (
+          <div className="bookCoverWrapper" style={{ width: '150px', height: '220px', flexShrink: 0 }}>
+            <img src={book.coverImage} alt={book.title} className="bookCoverImg" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+          </div>
+        )}
+        <div style={{ flex: 1, minWidth: '200px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+          <p className="author">by {book.author}</p> 
+          <p className="genre"><strong>Genre:</strong> {book.genre || 'N/A'}</p> 
+          <p className="pages"><strong>Total Pages:</strong> {book.totalPages}</p> 
+          <p className="status"><strong>Status:</strong> {book.status}</p> 
+          {book.startDate && <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}><strong>Started:</strong> {new Date(book.startDate).toLocaleDateString()}</p>}
+          {book.completionDate && <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}><strong>Completed:</strong> {new Date(book.completionDate).toLocaleDateString()}</p>}
+        </div>
+      </div>
 
       <h2 className="sectionTitle">Reading Progress</h2> 
       <ProgressBar currentPage={book.currentPage} totalPages={book.totalPages} />

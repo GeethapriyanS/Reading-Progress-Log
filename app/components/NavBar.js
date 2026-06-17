@@ -17,7 +17,7 @@ export default function NavBar() {
     }else{
       setIsLoggedIn(false);
     }
-  }, []);
+  }, [pathname]);
 
   const handleLogout = () => {
     localStorage.removeItem('userId');
@@ -30,6 +30,7 @@ export default function NavBar() {
     { name: 'Add Book', href: '/add-book' },
     { name: 'Goals', href: '/goals' },
     { name: 'Completed', href: '/completed' },
+    { name: 'Profile', href: '/profile' },
   ];
 
   return (
@@ -38,7 +39,7 @@ export default function NavBar() {
         <Link href="/">Reading Log</Link>
       </div>
       <ul className="navLinks"> 
-        {navLinks.map((link) => (
+        {isLoggedIn && navLinks.map((link) => (
           <li key={link.name}>
             <Link
               href={link.href}

@@ -73,7 +73,6 @@ export default function GoalsPage() {
     } catch (err) {
       console.error('Error adding goal:', err);
       setError('An unexpected error occurred while adding the goal.');
-     fungicide;
     }
   };
 
@@ -138,7 +137,7 @@ export default function GoalsPage() {
 
         <div className="goalGrid">
           {goals.map(goal => (
-            <div key={goal._id} className="goalCard">
+            <div key={goal._id} className={`goalCard ${goal.isCompleted ? 'completedGoal' : ''}`}>
               <h3>{goal.type === 'pages' ? 'Read' : 'Read'} {goal.target} {goal.type}</h3>
               <p>By: {new Date(goal.endDate).toLocaleDateString()}</p>
               <ProgressBar currentPage={goal.progress} totalPages={goal.target} />

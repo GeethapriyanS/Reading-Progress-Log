@@ -18,6 +18,8 @@ export default function AddBookPage() {
   });
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
+  const [suggestions, setSuggestions] = useState([]);
+  const [searching, setSearching] = useState(false);
 
   useEffect(() => {
     const storedUserId = localStorage.getItem('userId');
@@ -40,6 +42,47 @@ export default function AddBookPage() {
       ...prevData,
       [name]: value,
     }));
+  };
+
+  const fetchSuggestions = async (query) => {
+    if (query.trim().length < 3) {
+      setSuggestions([]);
+      return;
+    }
+    setSearching(true);
+    try {
+      const res = await fetch(`https://openlibrary.org/search.json?title=${encodeURIComponent(query)}&limit=5`);
+      if (res.ok) {
+        const data = await res.json();
+        const docs = data.docs || [];
+        const formatted = docs.map(doc => ({
+          title: doc.title,
+          author: doc.author_name ? doc.author_name.join(', ') : 'Unknown Author',
+          totalPages: doc.number_of_pages_median || doc.number_of_pages || 150,
+          genre: doc.subject ? doc.subject[0] : '',
+          tags: doc.subject ? doc.subject.slice(0, 5).join(', ') : '',
+          coverImage: doc.cover_i ? `https://covers.openlibrary.org/b/id/${doc.cover_i}-L.jpg` : '',
+        }));
+        setSuggestions(formatted);
+      }
+    } catch (err) {
+      console.error('Error fetching suggestions:', err);
+    } finally {
+      setSearching(false);
+    }
+  };
+
+  const handleSelectSuggestion = (s) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      title: s.title,
+      author: s.author,
+      totalPages: s.totalPages.toString(),
+      genre: s.genre,
+      tags: s.tags,
+      coverImage: s.coverImage,
+    }));
+    setSuggestions([]);
   };
 
   const handleSubmit = async (e) => {
@@ -98,16 +141,33 @@ export default function AddBookPage() {
         {message && <p className="successMessage">{message}</p>}
         {error && <p className="errorMessage">{error}</p>}
 
-        <div className="formGroup">
+        <div className="formGroup" style={{ position: 'relative' }}>
           <label htmlFor="title">Title</label>
           <input
             type="text"
             id="title"
             name="title"
             value={formData.title}
-            onChange={handleChange}
+            onChange={(e) => {
+              handleChange(e);
+              fetchSuggestions(e.target.value);
+            }}
             required
+            autoComplete="off"
           />
+          {searching && <p className="searchingText">Searching Open Library...</p>}
+          {suggestions.length > 0 && (
+            <ul className="suggestionsList">
+              {suggestions.map((s, index) => (
+                <li
+                  key={index}
+                  onClick={() => handleSelectSuggestion(s)}
+                >
+                  <strong>{s.title}</strong> by {s.author} ({s.totalPages} pages)
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
 
         <div className="formGroup">

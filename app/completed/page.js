@@ -51,18 +51,30 @@ export default function CompletedBooksPage() {
       ) : (
         <div className="bookGrid"> 
           {completedBooks.map(book => (
-            <div key={book._id} className="bookCard"> 
-              <img src={book.coverImage} alt=' book image'/>
-              <Link href={`/book/${book._id}`} className="bookTitleLink"> 
-                <h3>{book.title}</h3>
-              </Link>
-              <p>by {book.author}</p>
-              {book.completionDate && <p className="completionDate">Completed on: {new Date(book.completionDate).toLocaleDateString()}</p>} 
-              {book.rating > 0 && <p className="rating">Rating: {book.rating}/5</p>} 
-              {book.review && <p className="review">&quot;{book.review.substring(0, 100)}{book.review.length > 100 ? '...' : ''}&quot;</p>} 
-              <Link href={`/book/${book._id}`} className="viewDetailsButton"> 
-                View Details & Review
-              </Link>
+            <div key={book._id} className="bookCard completedCard"> 
+              {book.coverImage && (
+                <div className="bookCoverWrapper">
+                  <img src={book.coverImage} alt={book.title} className="bookCoverImg" />
+                </div>
+              )}
+              <div className="bookCardDetails">
+                <Link href={`/book/${book._id}`} className="bookTitleLink"> 
+                  <h3>{book.title}</h3>
+                </Link>
+                <p className="authorName">by {book.author}</p>
+                {book.completionDate && <p className="completionDate" style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '8px' }}>Completed: {new Date(book.completionDate).toLocaleDateString()}</p>} 
+                {book.rating > 0 && (
+                  <div className="ratingDisplay" style={{ marginBottom: '8px' }}>
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <span key={i} className={`starDisplay ${i < book.rating ? 'filled' : ''}`}>&#9733;</span>
+                    ))}
+                  </div>
+                )}
+                {book.review && <p className="review" style={{ fontSize: '0.85rem', color: 'var(--text-muted)', fontStyle: 'italic', marginBottom: '12px', lineHeight: '1.4' }}>&quot;{book.review.substring(0, 100)}{book.review.length > 100 ? '...' : ''}&quot;</p>} 
+                <Link href={`/book/${book._id}`} className="viewReviewBtn" style={{ marginTop: 'auto' }}> 
+                  View Details & Review
+                </Link>
+              </div>
             </div>
           ))}
         </div>
