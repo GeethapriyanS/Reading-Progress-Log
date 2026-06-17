@@ -6,7 +6,7 @@ import { NextResponse } from 'next/server';
 
 export async function GET(req, { params }) {
   await dbConnect();
-  const { id } = params;
+  const { id } = await params;
 
   try {
     const user = await User.findById(id).select('-password');
@@ -44,7 +44,7 @@ export async function GET(req, { params }) {
 
 export async function PUT(req, { params }) {
   await dbConnect();
-  const { id } = params;
+  const { id } = await params;
 
   try {
     const user = await User.findById(id);
